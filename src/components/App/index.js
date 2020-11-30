@@ -9,7 +9,7 @@ class App extends Component {
       minstr: "00",
       secstr: "00",
       minutes: 0,
-      seconds: 55,
+      seconds: 0,
       paused: true
     };
   }
@@ -57,7 +57,7 @@ class App extends Component {
       secstr: seconds > 9 ? seconds : "0"+seconds
     })
 
-    console.log(minstr+":"+secstr);
+    console.log(this.state.minstr+":"+this.state.secstr);
   };
 
   render() {
