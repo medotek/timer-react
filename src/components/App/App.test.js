@@ -1,4 +1,4 @@
-/*import React from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
@@ -16,7 +16,7 @@ afterEach(() => {
   container.remove();
 });
 
-it("renders without crashing", () => {
+it("marche", () => {
   jest.useFakeTimers();
 
   act(() => {
@@ -40,4 +40,3 @@ it("renders without crashing", () => {
     "1"
   );
 });
-*/

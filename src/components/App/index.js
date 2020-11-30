@@ -6,8 +6,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      minstr: "00",
+      secstr: "00",
       minutes: 0,
-      seconds: 0,
+      seconds: 55,
       paused: true
     };
   }
@@ -15,8 +17,6 @@ class App extends Component {
   startTimer = () => {
     this.interval = setInterval(() => this.counter(), 1000);
     this.setState({ paused: false });
-    console.log("stop");
-    console.log(this.counter());
   };
 
   stopTimer = () => {
@@ -34,24 +34,36 @@ class App extends Component {
     }
   };
 
+  //Incrementation du temps dans les variables d'états
   counter = () => {
-    if (this.state.seconds === 60) {
+    let seconds = this.state.seconds
+    let minutes = this.state.minutes
+
+    //Mise à jour des entiers seconds et minutes
+    if (seconds === 59) {
       this.setState({
-        minutes: this.state.minutes + 1,
+        minutes: minutes + 1,
         seconds: 0
       });
     } else {
       this.setState({
-        seconds: this.state.seconds + 1
+        seconds: seconds + 1
       });
-      console.log(this.state.minutes + ":" + this.state.seconds);
     }
+
+    //Mise à jour des chaines de caractères secstr et minstr
+    this.setState({
+      minstr: minutes > 9 ? minutes : "0"+minutes,
+      secstr: seconds > 9 ? seconds : "0"+seconds
+    })
+
+    console.log(minstr+":"+secstr);
   };
 
   render() {
     return (
       <div className="App">
-        <Timer time={this.state.minutes + ":" + this.state.seconds} />
+        <Timer time={this.state.minstr+this.state.secstr} />
         <button
           className={this.state.paused ? "paused" : ""}
           onClick={this.onClickHandler}
