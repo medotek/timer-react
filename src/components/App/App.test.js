@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
-import App from "./App";
+import App from "./index.js";
 
 let container = null;
 
@@ -22,21 +22,21 @@ it("marche", () => {
   act(() => {
     render(<App />, container);
   });
-  expect(document.querySelector("[data-testid='timer']").textContent).toMatch(
+  expect(document.querySelector(".time").textContent).toMatch(
     "0"
   );
 
   act(() => {
     jest.advanceTimersByTime(100);
   });
-  expect(document.querySelector("[data-testid='timer']").textContent).toMatch(
-    "0"
+  expect(document.querySelector(".time").textContent).toMatch(
+    "0000"
   );
 
   act(() => {
     jest.advanceTimersByTime(1000);
   });
-  expect(document.querySelector("[data-testid='timer']").textContent).toMatch(
-    "1"
+  expect(document.querySelector(".time").textContent).toMatch(
+    "0001"
   );
 });

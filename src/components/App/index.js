@@ -10,8 +10,13 @@ class App extends Component {
       secstr: "00",
       minutes: 0,
       seconds: 0,
-      paused: true
+      paused: false
     };
+  }
+
+  componentDidMount = () => {
+    if(!this.state.paused)
+      this.startTimer();
   }
 
   startTimer = () => {
@@ -34,13 +39,14 @@ class App extends Component {
     }
   };
 
-  //Incrementation du temps dans les variables d'états
-  counter = () => {
-    let seconds = this.state.seconds
-    let minutes = this.state.minutes
-
+  updateTime = (minutes, seconds) => {
     //Mise à jour des entiers seconds et minutes
-    if (seconds === 59) {
+    if(minutes === 99 && seconds === 59) {
+      this.setState({
+        minutes: 0,
+        seconds: 0
+      })
+    } else if (seconds === 59) {
       this.setState({
         minutes: minutes + 1,
         seconds: 0
@@ -50,6 +56,14 @@ class App extends Component {
         seconds: seconds + 1
       });
     }
+  }
+
+  //Incrementation du temps dans les variables d'états
+  counter = () => {
+    let seconds = this.state.seconds
+    let minutes = this.state.minutes
+
+    this.updateTime(minutes, seconds);
 
     //Mise à jour des chaines de caractères secstr et minstr
     this.setState({
@@ -63,13 +77,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Timer time={this.state.minstr+this.state.secstr} />
+        <Timer time={this.state.minstr+""+this.state.secstr} />
         <button
           className={this.state.paused ? "paused" : ""}
           onClick={this.onClickHandler}
         >
           {this.state.paused ? "play" : "pause"}
         </button>
+        <p className="hidden time">{this.state.minstr+""+this.state.secstr}</p>
       </div>
     );
   }
