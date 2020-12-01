@@ -77,14 +77,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div class="style">
         <Timer time={this.state.minstr+""+this.state.secstr} />
+        </div>
         <button
           className={this.state.paused ? "paused" : ""}
           onClick={this.onClickHandler}
         >
           {this.state.paused ? "play" : "pause"}
         </button>
-        <p className="hidden time">{this.state.minstr+""+this.state.secstr}</p>
+
+          <p id="time" className="hidden time">{this.state.minstr+":"+this.state.secstr}</p>
+
       </div>
     );
   }

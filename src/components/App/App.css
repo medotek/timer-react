@@ -1,3 +1,41 @@
 .hidden {
   visibility: hidden;
 }
+
+.style {
+  width:300px;
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-left:50px;
+  padding-right:50px;
+  background-color:#0e0e0e;
+  margin:0 auto;
+  border: 15px solid grey;
+  border-left-style: groove;
+  border-top-style: groove;
+  border-bottom-style: groove;
+  border-right-style: groove;
+}
+.App {
+  text-align: center;
+  margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
+  transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
+}
+html body div#root div.App div.style div svg g polygon {
+  stroke-width: 0px;
+}
+
+button {
+  background-color:darkorange;
+  border-style: none;
+  padding:5px;
+  font-family: Roboto;
+  padding-left:15px;
+  padding-right: 15px;
+  border-radius: 5px;
+  font-size:20px;
+  font-weight: 400;
+  color:white;
+  margin:10px;
+
+}
